@@ -9,6 +9,7 @@ var confirmLower;
 var confirmUpper;
 var confirmNumber;
 var confirmSymbol;
+var userSelected;
 
 var randomLower=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "o", 
 "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
@@ -21,7 +22,7 @@ console.log(randomNumber)
 var randomSymbol= ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", ".", ",", "/", "?", 
 ";", ":"]
 console.log(randomSymbol.length);
-
+ userSelected= ""
 
 
 // Write password to the #password input
@@ -40,12 +41,14 @@ generateBtn.addEventListener("click", writePassword);
 function generatePassword(){
   passwordLength = prompt("How many characters would you like your password to contain? Choose between 8 and 128")
 
-if (passwordLength < 8 || passwordLength > 128){
-  passwordLength = prompt ("You must choose between 8 and 128");
+while (passwordLength < 8 || passwordLength > 128){
+  passwordLength = confirm ("You must choose between 8 and 128");
+
   console.log("pass length " + passwordLength);
+  
 }
 
-else {
+ {
   confirmLower = confirm("Press OK if you want to include lower case");
   console.log("lower case " + confirmLower)
   
@@ -65,7 +68,10 @@ else {
 
 function passwordText(passwordLength){
 
- 
+userSelected =+(randomUpper.randomLower);
+  console.log(“you selected” + userSelected);
+} 
+
 console.log(passwordText)
 }
 
