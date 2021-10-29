@@ -43,7 +43,7 @@ function generatePassword(){
 
 while (passwordLength < 8 || passwordLength > 128){
   passwordLength = confirm ("You must choose between 8 and 128");
-
+  passwordLength = prompt("How many characters would you like your password to contain? Choose between 8 and 128")
   console.log("pass length " + passwordLength);
   
 }
@@ -63,18 +63,100 @@ while (passwordLength < 8 || passwordLength > 128){
 }
 
 } 
-
+generatePassword()
 
 
 function passwordText(passwordLength){
+// if all 4 are selected 
+  if (confirmLower && confirmUpper && confirmSymbol && confirmNumber) {
 
-userSelected =+(randomUpper.randomLower);
-  console.log(“you selected” + userSelected);
-} 
+    userSelected = randomLower.concat(randomUpper, randomSymbol, randomNumber);
+      console.log("you selected " + userSelected);
+  }
 
-console.log(passwordText)
+  // if 3 are selected
+  else if (confirmLower && confirmUpper && confirmSymbol ){
+    userSelected = randomLower.concat(randomUpper, randomSymbol)
+    console.log("you selected " + userSelected)
+  }
+
+  else if (confirmLower && confirmUpper && confirmNumber ){
+    userSelected = randomLower.concat(randomUpper, randomNumber)
+    console.log("you selected " + userSelected)
+  }
+  else if (confirmLower && confirmNumber && confirmSymbol ){
+    userSelected = randomLower.concat(randomNumber, randomSymbol)
+    console.log("you selected " + userSelected)
+  }
+  else if (confirmUpper && confirmNumber && confirmSymbol ){
+    userSelected = randomUpper.concat(randomNumber, randomSymbol)
+    console.log("you selected " + userSelected)
+  }
+
+// if 2 are selected 
+else if (confirmUpper && confirmNumber ){
+  userSelected = randomUpper.concat(randomNumber)
+  console.log("you selected " + userSelected)
 }
 
+else if (confirmLower && confirmNumber ){
+  userSelected = randomLower.concat(randomNumber)
+  console.log("you selected " + userSelected)
+}
+else if (confirmUpper && confirmSymbol ){
+  userSelected = randomUpper.concat(randomSymbol)
+  console.log("you selected " + userSelected)
+}
+
+else if (confirmLower && confirmSymbol ){
+  userSelected = randomLower.concat(randomSymbol)
+  console.log("you selected " + userSelected)
+}
+
+else if (confirmSymbol && confirmNumber ){
+  userSelected = randomSymbol.concat(randomNumber)
+  console.log("you selected " + userSelected)
+}
+
+// if 1 is selected
+  else if (confirmLower){
+    userSelected = randomLower;
+    console.log("you selected " + userSelected);
+  }
+
+  else if (confirmUpper){
+    userSelected = randomUpper;
+    console.log("you selected " + userSelected);
+  }
+
+  else if (confirmSymbol){
+    userSelected = randomSymbol;
+    console.log("you selected " + userSelected);
+  }
+
+  else if (confirmNumber){
+    userSelected = randomNumber;
+    console.log("you selected " + userSelected);
+  }
+
+  else{
+    userSelected = alert("No selection was chosen");
+    confirmLower = confirm("Press OK if you want to include lower case");
+  console.log("lower case " + confirmLower)
+  
+  confirmUpper = confirm("Press OK if you want to include UPPER case");
+  console.log("uper case " + confirmUpper)
+  
+  confirmNumber = confirm("Press OK if you want to include numbers");
+  console.log("number " + confirmNumber)
+  
+  confirmSymbol = confirm("Press OK if you want to include special characters");
+  console.log("special character " + confirmSymbol)
+    console.log(userSelected)
+  }
+// console.log(passwordText)
+}
+ passwordText()
 
 
 // GIVEN I need a new, secure password
