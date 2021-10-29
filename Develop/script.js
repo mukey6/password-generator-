@@ -11,17 +11,32 @@ var confirmNumber;
 var confirmSymbol;
 var userSelected;
 
-var randomLower=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "o", 
+var lowerArray=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "o", 
 "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-console.log(randomLower.length)
-var randomUpper=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", 
+
+console.log(lowerArray.length)
+
+var randomLower = Math.floor(Math.random() * 26)
+console.log("you get" + lowerArray[randomLower]);
+
+var upperArray=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", 
 "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-console.log(randomUpper.length)
+console.log(upperArray.length)
+
+var randomUpper = Math.floor(Math.random() * 26)
+console.log("you get " + upperArray[randomUpper]);
+
 var randomNumber= Math.floor(Math.random() *10)
 console.log(randomNumber)
-var randomSymbol= ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", ".", ",", "/", "?", 
+
+var symbolArray= ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", ".", ",", "/", "?", 
 ";", ":"]
-console.log(randomSymbol.length);
+console.log(symbolArray.length);
+
+var randomSymbol = Math.floor(Math.random() * 18)
+console.log("you get " + symbolArray[randomSymbol]);
+
+
  userSelected= ""
 
 
@@ -128,9 +143,9 @@ else if (confirmSymbol && confirmNumber ){
     userSelected = randomUpper;
     console.log("you selected " + userSelected);
   }
-
+// i got this figured out but how about the rest?
   else if (confirmSymbol){
-    userSelected = randomSymbol;
+    userSelected = symbolArray[randomSymbol];
     console.log("you selected " + userSelected);
   }
 
