@@ -10,41 +10,31 @@ var confirmUpper;
 var confirmNumber;
 var confirmSymbol;
 var userSelected;
+var possibleCharacters= [];
 
 var lowerArray=["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "o", 
 "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 console.log(lowerArray.length)
 
-var randomLower = Math.floor(Math.random() * 26)
-console.log("you get" + lowerArray[randomLower]);
 
 var upperArray=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", 
 "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 console.log(upperArray.length)
 
-var randomUpper = Math.floor(Math.random() * 26)
-console.log("you get " + upperArray[randomUpper]);
 
-var randomNumber= Math.floor(Math.random() *10)
-console.log(randomNumber)
+var numberArray =[1, 2, 3, 4, 5, 6, 7, 8, 9, 0] 
 
 var symbolArray= ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", ".", ",", "/", "?", 
 ";", ":"]
 console.log(symbolArray.length);
-
-var randomSymbol = Math.floor(Math.random() * 18)
-console.log("you get " + symbolArray[randomSymbol]);
-
-
- userSelected= ""
 
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+console.log(password, "write password ")
   passwordText.value = password;
 
 
@@ -54,6 +44,7 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 function generatePassword(){
+  var genPass= ""
   passwordLength = prompt("How many characters would you like your password to contain? Choose between 8 and 128")
 
 while (passwordLength < 8 || passwordLength > 128){
@@ -75,103 +66,43 @@ while (passwordLength < 8 || passwordLength > 128){
   
   confirmSymbol = confirm("Press OK if you want to include special characters");
   console.log("special character " + confirmSymbol)
-}
 
+  confirmNothing = alert("You need to choose at least one criteria")
+  console.log("you did not confirm anything " + confirmNothing)
+}
+createCharArray()
+
+console.log(possibleCharacters.flat())
+for (let index = 0; index < passwordLength; index++) {
+  var selectedCharacters = possibleCharacters.flat()
+  var char= selectedCharacters[Math.floor(Math.random() * selectedCharacters.length)]
+  genPass += char
+}
+console.log(genPass, "Here we got a pass ")
+return genPass
 } 
-generatePassword()
 
-
-function passwordText(passwordLength){
-// if all 4 are selected 
-  if (confirmLower && confirmUpper && confirmSymbol && confirmNumber) {
-
-    userSelected = randomLower.concat(randomUpper, randomSymbol, randomNumber);
-      console.log("you selected " + userSelected);
+function createCharArray (){
+  console.log(confirmNumber, confirmLower, confirmSymbol, confirmUpper, " created char array ")
+  if (confirmLower){
+    possibleCharacters.push(lowerArray)
   }
 
-  // if 3 are selected
-  else if (confirmLower && confirmUpper && confirmSymbol ){
-    userSelected = randomLower.concat(randomUpper, randomSymbol)
-    console.log("you selected " + userSelected)
+  if (confirmUpper){
+    possibleCharacters.push(upperArray)
   }
 
-  else if (confirmLower && confirmUpper && confirmNumber ){
-    userSelected = randomLower.concat(randomUpper, randomNumber)
-    console.log("you selected " + userSelected)
-  }
-  else if (confirmLower && confirmNumber && confirmSymbol ){
-    userSelected = randomLower.concat(randomNumber, randomSymbol)
-    console.log("you selected " + userSelected)
-  }
-  else if (confirmUpper && confirmNumber && confirmSymbol ){
-    userSelected = randomUpper.concat(randomNumber, randomSymbol)
-    console.log("you selected " + userSelected)
+  if (confirmSymbol){
+    possibleCharacters.push(symbolArray)
   }
 
-// if 2 are selected 
-else if (confirmUpper && confirmNumber ){
-  userSelected = randomUpper.concat(randomNumber)
-  console.log("you selected " + userSelected)
+  if (confirmNumber){
+    possibleCharacters.push(numberArray)
+  }
+ 
 }
 
-else if (confirmLower && confirmNumber ){
-  userSelected = randomLower.concat(randomNumber)
-  console.log("you selected " + userSelected)
-}
-else if (confirmUpper && confirmSymbol ){
-  userSelected = randomUpper.concat(randomSymbol)
-  console.log("you selected " + userSelected)
-}
 
-else if (confirmLower && confirmSymbol ){
-  userSelected = randomLower.concat(randomSymbol)
-  console.log("you selected " + userSelected)
-}
-
-else if (confirmSymbol && confirmNumber ){
-  userSelected = randomSymbol.concat(randomNumber)
-  console.log("you selected " + userSelected)
-}
-
-// if 1 is selected
-  else if (confirmLower){
-    userSelected = randomLower;
-    console.log("you selected " + userSelected);
-  }
-
-  else if (confirmUpper){
-    userSelected = randomUpper;
-    console.log("you selected " + userSelected);
-  }
-// i got this figured out but how about the rest?
-  else if (confirmSymbol){
-    userSelected = symbolArray[randomSymbol];
-    console.log("you selected " + userSelected);
-  }
-
-  else if (confirmNumber){
-    userSelected = randomNumber;
-    console.log("you selected " + userSelected);
-  }
-
-  else{
-    userSelected = alert("No selection was chosen");
-    confirmLower = confirm("Press OK if you want to include lower case");
-  console.log("lower case " + confirmLower)
-  
-  confirmUpper = confirm("Press OK if you want to include UPPER case");
-  console.log("uper case " + confirmUpper)
-  
-  confirmNumber = confirm("Press OK if you want to include numbers");
-  console.log("number " + confirmNumber)
-  
-  confirmSymbol = confirm("Press OK if you want to include special characters");
-  console.log("special character " + confirmSymbol)
-    console.log(userSelected)
-  }
-// console.log(passwordText)
-}
- passwordText()
 
 
 // GIVEN I need a new, secure password
